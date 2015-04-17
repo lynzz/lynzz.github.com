@@ -12,7 +12,7 @@
 
     
     <meta name="description">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="前端攻城师">
 <meta property="og:url" content="http://lynzz.github.io/archives/2013/03/index.html">
 <meta property="og:site_name" content="前端攻城师">
@@ -29,8 +29,8 @@
     <link rel="icon" href="/img/favicon.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon" href="/img/apple-icon-114x114.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/apple-icon-114x114.png">
     
     <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
@@ -58,7 +58,7 @@
 					
 						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/about">关于我</a></li>
+						<li><a href="/">关于我</a></li>
 					
 					<li>
  					
@@ -89,7 +89,7 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2013/03/19/first-day-on-new-company/" title="新的公司，新的开始" itemprop="url">
+    <a href="/first-day-on-new-company/" title="新的公司，新的开始" itemprop="url">
   
 
     <time datetime="2013-03-18T16:00:00.000Z" itemprop="datePublished">2013-03-19</time>
@@ -193,8 +193,36 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
   });
 });
 </script>
