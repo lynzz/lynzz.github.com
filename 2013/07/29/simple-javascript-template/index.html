@@ -1,0 +1,458 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Simple Javascript Template | 前端攻城师</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="lynzz">
+    
+
+    
+    <meta name="description" content="经常碰到拼接字符串时候，平时都是用泽飞写的substitute函数，但老是忘记那个函数，现给它转截给过来，先记着
+
+转载地址：http://www.planabc.net/2011/05/31/simple_javascript_template_substitute/
+我们在平常使用字符串拼接的时候（如下例），会发现代码的可维护性和易读性将变得更加糟糕（代码中一堆的变量、双引号、单引号, 加号等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Simple Javascript Template">
+<meta property="og:url" content="http://lynzz.github.io/2013/07/29/simple-javascript-template/index.html">
+<meta property="og:site_name" content="前端攻城师">
+<meta property="og:description" content="经常碰到拼接字符串时候，平时都是用泽飞写的substitute函数，但老是忘记那个函数，现给它转截给过来，先记着
+
+转载地址：http://www.planabc.net/2011/05/31/simple_javascript_template_substitute/
+我们在平常使用字符串拼接的时候（如下例），会发现代码的可维护性和易读性将变得更加糟糕（代码中一堆的变量、双引号、单引号, 加号等">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Simple Javascript Template">
+<meta name="twitter:description" content="经常碰到拼接字符串时候，平时都是用泽飞写的substitute函数，但老是忘记那个函数，现给它转截给过来，先记着
+
+转载地址：http://www.planabc.net/2011/05/31/simple_javascript_template_substitute/
+我们在平常使用字符串拼接的时候（如下例），会发现代码的可维护性和易读性将变得更加糟糕（代码中一堆的变量、双引号、单引号, 加号等">
+<meta name="twitter:creator" content="@lynzz168">
+
+    
+    <link rel="alternative" href="/atom.xml" title="前端攻城师" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="前端攻城师" title="前端攻城师"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="前端攻城师">前端攻城师</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于我</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:lynzz.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/07/29/simple-javascript-template/" title="Simple Javascript Template" itemprop="url">Simple Javascript Template</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="lynzz" target="_blank" itemprop="author">lynzz</a>
+		
+  <p class="article-time">
+    <time datetime="2013-07-28T16:00:00.000Z" itemprop="datePublished"> 發表於 2013-07-29</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			
+		
+		</div>
+		
+		<blockquote>
+<p>经常碰到拼接字符串时候，平时都是用<a href="http://www.planabc.net" title="泽飞" target="_blank" rel="external">泽飞</a>写的substitute函数，但老是忘记那个函数，现给它转截给过来，先记着</p>
+</blockquote>
+<p>转载地址：<a href="http://www.planabc.net/2011/05/31/simple_javascript_template_substitute/" target="_blank" rel="external">http://www.planabc.net/2011/05/31/simple_javascript_template_substitute/</a></p>
+<p>我们在平常使用字符串拼接的时候（如下例），会发现代码的可维护性和易读性将变得更加糟糕（代码中一堆的变量、双引号、单引号, 加号等，相信当情况更为复杂时，头一定发晕）:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> var url= 'http://www.plannabc.net/',</span><br><span class="line"> title= '落草为根——专注前端技术&amp;关注用户体验',</span><br><span class="line"> text = '怿飞's Blog';</span><br><span class="line"></span><br><span class="line">var link = '&lt;a href="' + url + '" title="' + title+ '"&gt;' + text+ '&lt;/a&gt;';</span><br></pre></td></tr></table></figure>
+<p>如果上述代码变为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> obj = &#123;</span><br><span class="line">   url: <span class="string">"http://www.plannabc.net/"</span>,</span><br><span class="line">   title: <span class="string">"落草为根——专注前端技术&amp;关注用户体验"</span>,</span><br><span class="line">   text: <span class="string">"怿飞's Blog"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> link = <span class="string">'&lt;a href="&#123;url&#125;" title="&#123;title&#125;"&gt;&#123;text&#125;&lt;/a&gt;'</span>;</span><br><span class="line">substitute(link, obj)</span><br></pre></td></tr></table></figure>
+<p>一切变得怡然自得。</p>
+<p>substitute 函数的实现思路其实很简单：使用 String 的 replace 函数，在 replace 函数中用正则匹配除模板中的要替换的标签（“{key}”），并进行替换：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">substitute</span> <span class="params">(str, obj)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (!(<span class="built_in">Object</span>.prototype.toString.call(str) === <span class="string">'[object String]'</span>)) &#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="string">''</span>;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// &#123;&#125;, new Object(), new Class()</span></span><br><span class="line">   <span class="comment">// Object.prototype.toString.call(node=document.getElementById("xx")) : ie678 == '[object Object]', other =='[object HTMLElement]'</span></span><br><span class="line">   <span class="comment">// 'isPrototypeOf' in node : ie678 === false , other === true</span></span><br><span class="line">   <span class="keyword">if</span>(!(<span class="built_in">Object</span>.prototype.toString.call(obj) === <span class="string">'[object Object]'</span> &amp;&amp; <span class="string">'isPrototypeOf'</span> <span class="keyword">in</span> obj)) &#123;</span><br><span class="line">       <span class="keyword">return</span> str;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/replace</span></span><br><span class="line">   <span class="keyword">return</span> str.replace(<span class="regexp">/\&#123;([^&#123;&#125;]+)\&#125;/g</span>, <span class="function"><span class="keyword">function</span><span class="params">(match, key)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> value = obj[key];</span><br><span class="line">       <span class="keyword">return</span> ( value !== <span class="literal">undefined</span>) ? <span class="string">''</span>+value :<span class="string">''</span>;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>substitute 函数将模板中的标签 {key} 替换成 obj 中对应的 value（obj[key] or obj[key].toString()），如果不存在，则替换成空字符。</p>
+<p>如果模板中某些内容不需要替换的怎么办？比如：{some text need brace}</p>
+<ol>
+<li><p>可以增加新的语法，人为控制不需要替换的模板标签，比如：{key}</p>
+</li>
+<li><p>使用更为少见的字符作为模板标签，避免与常规情况撞车，比如：<br>当然如果输入的数据 obj 为不完全信任的数据（比如：XSS）时，可以增加字符的转义：</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">escape</span><span class="params">(s)</span> </span>&#123;</span><br><span class="line">   s = <span class="built_in">String</span>(s === <span class="literal">null</span> ? <span class="string">""</span> : s);</span><br><span class="line">   <span class="keyword">return</span> s.replace(<span class="regexp">/&amp;(?!\w+;)|["'&lt;&gt;\\]/g</span>, <span class="function"><span class="keyword">function</span><span class="params">(s)</span> </span>&#123;</span><br><span class="line">     <span class="keyword">switch</span>(s) &#123;</span><br><span class="line">       <span class="keyword">case</span> <span class="string">"&amp;"</span>: <span class="keyword">return</span> <span class="string">"&amp;amp;"</span>;</span><br><span class="line">       <span class="keyword">case</span> <span class="string">"\\"</span>: <span class="keyword">return</span> <span class="string">"\\\\"</span>;</span><br><span class="line">       <span class="keyword">case</span> <span class="string">'"'</span>: <span class="keyword">return</span> <span class="string">'&amp;quot;'</span>;</span><br><span class="line">       <span class="keyword">case</span> <span class="string">"'"</span>: <span class="keyword">return</span> <span class="string">'&amp;#39;'</span>;</span><br><span class="line">       <span class="keyword">case</span> <span class="string">"&lt;"</span>: <span class="keyword">return</span> <span class="string">"&amp;lt;"</span>;</span><br><span class="line">       <span class="keyword">case</span> <span class="string">"&gt;"</span>: <span class="keyword">return</span> <span class="string">"&amp;gt;"</span>;</span><br><span class="line">       <span class="keyword">default</span>: <span class="keyword">return</span> s;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们再看看 YUI3 中的实现 ：<a href="https://github.com/yui/yui3/blob/master/src/substitute/js/substitute.js" target="_blank" rel="external">https://github.com/yui/yui3/blob/master/src/substitute/js/substitute.js</a><br>YUI3中做了更多的处理 substitute(s, o, f, recurse)：</p>
+<ol>
+<li>允许传入 fn，fn 将对 obj 中对应的 key/value 进行处理，返回新的 value。</li>
+<li>如果支持 Y.dump 函数，将把 value 是对象的转成一定格式的字符串，如果不支持，直接返回对象的 toString。</li>
+<li>value 值为非对象、非字符串和非数字时 ，保持原标签不作替换。</li>
+<li>如果 recurse 参数设置为 true，将进行标签的递归替换。<br>其实一般的时候简单的方式就够用了。面对自己编写库或组件的时候，都会有如下的选择：</li>
+<li>大而全，涵盖所有的扩展，能捕捉到所有的异常。</li>
+<li>小而精，满足一般的需求，特殊情况可定制，异常可通过约定控制。<br>选择最合适的才是最重要的，对于自己，通常偏向后者。</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://lynzz.github.io/2013/07/29/simple-javascript-template/" data-title="Simple Javascript Template | 前端攻城师" data-tsina="1746369185" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/04/17/hello-world/" title="Hello World">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Hello World</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/03/19/first-day-on-new-company/"  title="新的公司，新的开始">
+ <strong>下一篇：</strong><br/> 
+ <span>新的公司，新的开始
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2013/07/29/simple-javascript-template/" data-title="Simple Javascript Template" data-url="http://lynzz.github.io/2013/07/29/simple-javascript-template/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=1746369185&verifier=42136668&dpc=1"></iframe>
+</div>
+
+
+  
+
+  
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://hmj.name/" target="_blank" title="骑兵程序员">骑兵程序员</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Lynzz Page in 17173. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/lynzz" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		<a href="https://github.com/lynzz" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		<a href="https://twitter.com/lynzz168" target="_blank" class="icon-twitter" title="twitter"></a>
+		
+		
+		
+		
+		
+		
+		
+		<a href="mailto:lynzz168@gmail.com" target="_blank" class="icon-email" title="Email Me"></a>
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="lynzz">lynzz</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"lynzz"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
